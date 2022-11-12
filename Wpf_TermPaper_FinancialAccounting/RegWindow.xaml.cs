@@ -105,6 +105,24 @@ namespace Wpf_TermPaper_FinancialAccounting
                 if (flag2)
                 {
                     MessageBox.Show("Успіх!");
+
+                    ArrayList list_command = new ArrayList();
+                    list_command.Add("INSERT INTO `category_income` (`name`, `user_id`) VALUES ('Заробітна плата', @user_id);");
+                    list_command.Add("INSERT INTO `category_income` (`name`, `user_id`) VALUES ('Разова робота', @user_id);");
+                    list_command.Add("INSERT INTO `category_income` (`name`, `user_id`) VALUES ('Подарунок', @user_id);");
+                    list_command.Add("INSERT INTO `category_outcome` (`name`, `user_id`) VALUES ('Продукти', @user_id);");
+                    list_command.Add("INSERT INTO `category_outcome` (`name`, `user_id`) VALUES ('Транспорт', @user_id);");
+                    list_command.Add("INSERT INTO `category_outcome` (`name`, `user_id`) VALUES ('Розваги', @user_id);");
+                    list_command.Add("INSERT INTO `category_outcome` (`name`, `user_id`) VALUES ('Спорт', @user_id);");
+
+                    ArrayList list_str1 = new ArrayList() { "@user_id" };
+                    ArrayList list_var1 = new ArrayList() { FindId(login) };
+
+                    for (int i = 0; i < list_command.Count; i++)
+                    {
+                        db.EditTable(list_command[i].ToString(), list_str1, list_var1);
+                    }
+
                 }
                 else
                 {
@@ -158,6 +176,22 @@ namespace Wpf_TermPaper_FinancialAccounting
                 return true;
             else
                 return false;
+        }
+
+        private string FindId(string login)
+        {
+            DB db = new DB();
+
+            string str_command = "SELECT * FROM `users` WHERE `login` = @login AND `is_delete` = 0";
+
+            ArrayList list_str = new ArrayList() { "@login" };
+            ArrayList list_var = new ArrayList() { login };
+
+            DataTable table = db.SelectTable(str_command, list_str, list_var);
+
+            string id = table.Rows[0][0].ToString();
+
+            return id;
         }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -49,13 +50,13 @@ namespace Wpf_TermPaper_FinancialAccounting.Classes
         public static void NewUser(string login_user)
         {
             DB db = new DB();
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `login` = @login", db.getConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login_user;
 
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
+            string str_command = "SELECT * FROM `users` WHERE `login` = @login";
+
+            ArrayList list_str = new ArrayList() { "@login" };
+            ArrayList list_var = new ArrayList() { login_user };
+
+            DataTable table = db.SelectTable(str_command, list_str, list_var);
 
             Id = table.Rows[0][0].ToString();
             Name = table.Rows[0][1].ToString();

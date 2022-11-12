@@ -100,10 +100,10 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
         {
             DB db = new DB();
 
-            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0";
+            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0 AND `user_id` = @user_id";
 
-            ArrayList list_str = new ArrayList();
-            ArrayList list_var = new ArrayList();
+            ArrayList list_str = new ArrayList() { "@user_id" };
+            ArrayList list_var = new ArrayList() { _CurrentUser.Id };
 
             DataTable table = db.SelectTable(str_command, list_str, list_var);
 
