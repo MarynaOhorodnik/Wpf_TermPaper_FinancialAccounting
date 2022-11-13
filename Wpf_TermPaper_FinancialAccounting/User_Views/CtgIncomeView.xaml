@@ -5,8 +5,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf_TermPaper_FinancialAccounting.User_Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="800" d:DesignWidth="1250">
     <Grid Background="White">
-        <TextBlock Text="Категорії надходжень" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <StackPanel>
+            <TextBlock Margin="0 20 0 30" Text="Категорії надходжень" HorizontalAlignment="Center" FontSize="20" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbNameCtg" Margin="100 0" Grid.Column="0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Назва категорії" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <Button Margin="50 0 50 0" Height="40" VerticalAlignment="Center" Grid.Column="1" Content="Зберегти" Click="SaveButton_Click" Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                <Button Margin="0 0 50 0" VerticalAlignment="Center" Grid.Column="2" Content="Оновити" Click="ReloadButton_Click" Style="{StaticResource MaterialDesignFlatButton}" />
+            </Grid>
+
+
+            <DockPanel Margin="100 50 0 0">
+                <ScrollViewer>
+                    <StackPanel>
+                        <ListView x:Name="listIncomeCtg">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=name}" Width="250">Категорія</GridViewColumn>
+
+                                    <GridViewColumn Header=" ">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="buttonEdit" Content="Змінити" Padding="5" Click="EditButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryButton}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header=" ">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="buttonDel" Content="Видалити" Padding="5" Click="DelButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryButton}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <TextBlock Margin="0 0 0 0" x:Name="ResultTxt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Medium" Foreground="DimGray" />
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

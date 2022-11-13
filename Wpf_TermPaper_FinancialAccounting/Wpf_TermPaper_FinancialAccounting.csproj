@@ -72,6 +72,18 @@
     </Compile>
     <Compile Include="Classes\DB.cs" />
     <Compile Include="Classes\_CurrentUser.cs" />
+    <Compile Include="Edit_Windows\EditIncome.xaml.cs">
+      <DependentUpon>EditIncome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Windows\EditIncomeCtg.xaml.cs">
+      <DependentUpon>EditIncomeCtg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Windows\EditOutcome.xaml.cs">
+      <DependentUpon>EditOutcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Windows\EditOutcomeCtg.xaml.cs">
+      <DependentUpon>EditOutcomeCtg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
@@ -99,6 +111,22 @@
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Windows\EditIncome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Windows\EditIncomeCtg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Windows\EditOutcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Windows\EditOutcomeCtg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

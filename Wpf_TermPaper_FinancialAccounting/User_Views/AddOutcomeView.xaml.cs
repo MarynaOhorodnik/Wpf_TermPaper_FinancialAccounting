@@ -79,7 +79,7 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
 
                 string str_command = "INSERT INTO `outcome` (`total`, `category_id`, `date`, `comment`, `user_id`) VALUES (@total, @category_id, @date, @comment, @user_id);";
                 ArrayList list_str = new ArrayList() { "@total", "@category_id", "@date", "@comment", "@user_id" };
-                ArrayList list_var = new ArrayList() { total_min, id_category, date, comment, _CurrentUser.Id };
+                ArrayList list_var = new ArrayList() { total_min, id_category, DateFormat(date), comment, _CurrentUser.Id };
 
                 bool flag2 = db.EditTable(str_command, list_str, list_var);
 
@@ -111,6 +111,16 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
 
             cbOutcomeCtg.ItemsSource = table.DefaultView;
             cbOutcomeCtg.Text = default;
+        }
+
+        private string DateFormat(string str)
+        {
+            string day = str.Substring(0, 2);
+            string month = str.Substring(3, 2);
+            string year = str.Substring(6);
+
+            string result = year + "-" + month + "-" + day;
+            return result;
         }
 
     }

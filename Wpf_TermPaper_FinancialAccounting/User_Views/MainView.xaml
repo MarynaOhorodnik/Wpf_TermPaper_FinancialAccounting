@@ -5,8 +5,92 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf_TermPaper_FinancialAccounting.User_Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1250">
     <Grid Background="White">
-        <TextBlock Text="Головна" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Головна" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" FontSize="20"/>
+        <Button Margin="0 5 10 0" Width="150" HorizontalAlignment="Right"  Grid.Column="2" Content="Оновити" Click="ReloadButton_Click" Style="{StaticResource MaterialDesignOutlinedButton}" />
+
+
+        <Button Grid.Column="0" Grid.Row="1" Width="300" Height="300" />
+
+        <DockPanel Grid.Column="0" Grid.Row="2">
+            <ScrollViewer Margin="20 20 20 0">
+                <StackPanel >
+                    <ListView x:Name="objectsListIncome" FontSize="14">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=total}">Сума</GridViewColumn>
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding Path=name}">Категорія</GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding Path=date}">Дата</GridViewColumn>
+
+                                <GridViewColumn Header=" ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Змінити" Padding="5" Click="IncomeEditButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header=" ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити" Padding="5" Click="IncomeDelButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Margin="0 20 0 0" x:Name="ResultTxtIncome" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="DimGray"/>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+
+
+        <Button Grid.Column="1" Grid.Row="1" Width="300" Height="300" />
+
+        <DockPanel Grid.Row="2" Grid.Column="1">
+            <ScrollViewer Margin="20 20 20 0">
+                <StackPanel >
+                    <ListView x:Name="objectsListOutcome" FontSize="14">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=total}">Сума</GridViewColumn>
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding Path=name}">Категорія</GridViewColumn>
+                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding Path=date}">Дата</GridViewColumn>
+
+                                <GridViewColumn Header=" ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Змінити" Padding="5" Click="OutcomeEditButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header=" ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Видалити" Padding="5" Click="OutcomeDelButton_Click" Tag="{Binding Path=id}" Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Margin="0 20 0 0" x:Name="ResultTxtOutcome" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="DimGray"/>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+
     </Grid>
 </UserControl>
