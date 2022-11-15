@@ -3,11 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf_TermPaper_FinancialAccounting"
         xmlns:viewmodels="clr-namespace:Wpf_TermPaper_FinancialAccounting.User_ViewModels"
         xmlns:views="clr-namespace:Wpf_TermPaper_FinancialAccounting.User_Views"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainWindow" Height="800" Width="1500" WindowState="Maximized" FontSize="16">
     <Window.Resources>
         <DataTemplate x:Name="MainViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
@@ -36,26 +34,36 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Padding="0" Background="LightGray">
+                <Border Grid.Column="0" Padding="0" Background="#636363">
                     <Grid>
-                        <TextBlock x:Name="TextHello" Margin="20 30 0 0" Text="Hello, User!" />
+                        <TextBlock x:Name="TextHello" Margin="20 30 0 0" Text="Hello, User!" Foreground="White"  />
 
-                        <StackPanel Margin="0 80 0 0">
-                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Content="Головна" Click="MainView_Click" />
-                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Content="Додати надходження" Click="AddIncomeView_Click" />
-                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Content="Додати витрати" Click="AddOutcomeView_Click" />
-                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Content="Категорії надходжень" Click="CtgIncomeView_Click" />
-                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Content="Категорії витрат" Click="CtgOutcomeView_Click" />
+                        <StackPanel Margin="0 80 0 0" >
+                            <Button Height="50" Margin="0 0 0 0" VerticalAlignment="Top" Click="MainView_Click" Background="Transparent" BorderBrush="#4d4d4d" >
+                                <TextBlock Text="Головна" Foreground="White"/>
+                            </Button>
+                            <Button Height="50" Margin="0 10 0 0" VerticalAlignment="Top" Click="AddIncomeView_Click" Background="Transparent" BorderBrush="#4d4d4d" >
+                                <TextBlock Text="Додати надходження" Foreground="White"/>
+                            </Button>
+                            <Button Height="50" Margin="0 10 0 0" VerticalAlignment="Top" Click="AddOutcomeView_Click" Background="Transparent" BorderBrush="#4d4d4d" >
+                                <TextBlock Text="Додати витрати" Foreground="White"/>
+                            </Button>
+                            <Button Height="50" Margin="0 10 0 0" VerticalAlignment="Top" Click="CtgIncomeView_Click" Background="Transparent" BorderBrush="#4d4d4d" >
+                                <TextBlock Text="Категорії надходжень" Foreground="White"/>
+                            </Button>
+                            <Button Height="50" Margin="0 10 0 0" VerticalAlignment="Top" Click="CtgOutcomeView_Click" Background="Transparent" BorderBrush="#4d4d4d" >
+                                <TextBlock Text="Категорії витрат" Foreground="White"/>
+                            </Button>
                         </StackPanel>
-                        <Button Height="50" VerticalAlignment="Bottom" Click="AuthButton_Click" Content="Вийти" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+                        <Button Height="50" VerticalAlignment="Bottom" Click="AuthButton_Click" Background="#4d4d4d" BorderBrush="#4d4d4d" >
+                            <TextBlock Text="Вийти" Foreground="White"/>
+                        </Button>
                     </Grid>
                 </Border>
 
                 <ContentControl Grid.Column="1" Content="{Binding}" />
 
             </Grid>
-
         </Border>
-
     </Grid>
 </Window>

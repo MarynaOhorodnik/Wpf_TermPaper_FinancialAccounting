@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf_TermPaper_FinancialAccounting.Classes;
 
 namespace Wpf_TermPaper_FinancialAccounting.User_Views
@@ -45,7 +35,7 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
 
             if (table.Rows.Count == 0)
             {
-                ResultTxt.Text = "Немає результатів";
+                ResultTxt.Text = "Немає даних";
             }
             else
             {
@@ -78,31 +68,28 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
                 ArrayList list_str = new ArrayList() { "@name", "@user_id" };
                 ArrayList list_var = new ArrayList() { name, _CurrentUser.Id };
 
-                bool flag2 = db.EditTable(str_command, list_str, list_var);
+                bool flag = db.EditTable(str_command, list_str, list_var);
 
-                if (flag2)
+                if (flag)
                 {
                     tbNameCtg.Text = "";
-                    MessageBox.Show("Успіх!");
                     ReloadTable();
                 }
                 else
                 {
                     MessageBox.Show("Щось пішло не так!");
                 }
-
             }
-            
         }
 
         private bool CheckNameCtg(string nm)
         {
             DB db = new DB();
 
-            string str_command = "SELECT * FROM `category_income` WHERE `name` = @name AND `is_delete` = 0";
+            string str_command = "SELECT * FROM `category_income` WHERE `name` = @name AND `is_delete` = 0 AND `user_id` = @id";
 
-            ArrayList list_str = new ArrayList() { "@name" };
-            ArrayList list_var = new ArrayList() { nm };
+            ArrayList list_str = new ArrayList() { "@name", "@id" };
+            ArrayList list_var = new ArrayList() { nm, _CurrentUser.Id };
 
             DataTable table = db.SelectTable(str_command, list_str, list_var);
 
@@ -112,6 +99,22 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
                 return false;
         }
 
+        private bool CheckCtg(int id)
+        {
+            DB db = new DB();
+
+            string str_command = "SELECT * FROM `income` WHERE `category_id` = @id AND `is_delete` = 0 AND `user_id` = @user_id";
+
+            ArrayList list_str = new ArrayList() { "@id", "@user_id" };
+            ArrayList list_var = new ArrayList() { id, _CurrentUser.Id };
+
+            DataTable table = db.SelectTable(str_command, list_str, list_var);
+
+            if (table.Rows.Count > 0)
+                return true;
+            else
+                return false;
+        }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -128,32 +131,33 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
                 case MessageBoxResult.Yes:
 
                     int id = Convert.ToInt32(((Button)(sender)).Tag);
-
-                    DB db = new DB();
-
-                    string str_command = "UPDATE `category_income` SET `is_delete` = '1' WHERE `category_income`.`id` = @id;";
-                    ArrayList list_str = new ArrayList() { "@id" };
-                    ArrayList list_var = new ArrayList() { id };
-
-                    bool flag = db.EditTable(str_command, list_str, list_var);
-
-                    if (flag)
+                    if (CheckCtg(id))
                     {
-                        MessageBox.Show("Успіх!");
+                        MessageBox.Show("Ви не можете видалити дану категорію. Спочатку видаліть надходження, що пов'язані з цією категорією.");
                     }
                     else
                     {
-                        MessageBox.Show("Щось пішло не так!");
-                    }
+                        DB db = new DB();
 
-                    ReloadTable();
+                        string str_command = "UPDATE `category_income` SET `is_delete` = '1' WHERE `category_income`.`id` = @id;";
+                        ArrayList list_str = new ArrayList() { "@id" };
+                        ArrayList list_var = new ArrayList() { id };
+
+                        bool flag = db.EditTable(str_command, list_str, list_var);
+
+                        if (!flag)
+                        {
+                            MessageBox.Show("Щось пішло не так!");
+                        }
+
+                        ReloadTable();
+                    }
 
                     break;
 
                 case MessageBoxResult.No:
                     break;
             }
-
         }
 
         private void ReloadButton_Click(object sender, RoutedEventArgs e)

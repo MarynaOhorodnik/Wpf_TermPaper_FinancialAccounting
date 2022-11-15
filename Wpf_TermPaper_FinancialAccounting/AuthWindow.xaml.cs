@@ -1,19 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Wpf_TermPaper_FinancialAccounting.Classes;
 
 namespace Wpf_TermPaper_FinancialAccounting
@@ -68,7 +56,6 @@ namespace Wpf_TermPaper_FinancialAccounting
                 if (table.Rows.Count > 0)
                 {
                     _CurrentUser.NewUser(login);
-                    MessageBox.Show("Успіх!");
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();

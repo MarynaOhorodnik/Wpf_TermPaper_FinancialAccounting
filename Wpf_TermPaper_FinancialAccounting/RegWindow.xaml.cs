@@ -1,19 +1,8 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Wpf_TermPaper_FinancialAccounting
 {
@@ -129,7 +118,6 @@ namespace Wpf_TermPaper_FinancialAccounting
                     MessageBox.Show("Щось пішло не так!");
                 }
             }
-
         }
 
         private void editTextBox(TextBox textbox, string str = "", bool mark = false)
@@ -144,8 +132,8 @@ namespace Wpf_TermPaper_FinancialAccounting
                 textbox.ToolTip = default;
                 textbox.Background = Brushes.Transparent;
             }
-            
         }
+
         private void editPassBox(PasswordBox passbox, string str="", bool mark=false)
         {
             if (mark)
@@ -158,7 +146,6 @@ namespace Wpf_TermPaper_FinancialAccounting
                 passbox.ToolTip = default;
                 passbox.Background = Brushes.Transparent;
             }
-            
         }
 
         private bool checkLogin(string login)

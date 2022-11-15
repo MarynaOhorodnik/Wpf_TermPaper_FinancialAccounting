@@ -1,11 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Wpf_TermPaper_FinancialAccounting
@@ -48,7 +43,6 @@ namespace Wpf_TermPaper_FinancialAccounting
 
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
-                //MessageBox.Show("Успіх!");
             }
             catch
             {

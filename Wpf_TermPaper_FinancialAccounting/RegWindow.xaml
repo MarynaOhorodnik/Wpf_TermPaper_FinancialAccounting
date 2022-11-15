@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf_TermPaper_FinancialAccounting"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="RegWindow" Height="800" Width="1500" WindowState="Maximized" FontSize="16">
@@ -35,7 +34,7 @@
                     <PasswordBox x:Name="passbox1" materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                     <PasswordBox x:Name="passbox2" materialDesign:HintAssist.Hint="Введіть пароль ще раз" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
-                    <Button Margin="0 20 0 0" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" Click="RegButton_Click" Content="Реєстрація"/>
+                    <Button Margin="0 20 0 0" Height="50" Style="{StaticResource MaterialDesignRaisedAccentButton}" Click="RegButton_Click" Content="Реєстрація"/>
                 </StackPanel>
 
                 <Grid Grid.Row="4">
@@ -45,12 +44,11 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Вже маєте акаунт?" />
-                    <Button Grid.Column="1" Height="50" Click="AuthButton_Click" Content="Авторизація" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+                    <Button Grid.Column="1" Height="50" Click="AuthButton_Click" Content="Авторизація" Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                            Background="#FFFDCCA0" BorderBrush="Transparent" />
                 </Grid>
 
             </Grid>
-
         </Border>
-
     </Grid>
 </Window>

@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Wpf_TermPaper_FinancialAccounting
 {
@@ -44,7 +32,6 @@ namespace Wpf_TermPaper_FinancialAccounting
 
             string name = table.Rows[0][1].ToString();
             return name;
-
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +48,6 @@ namespace Wpf_TermPaper_FinancialAccounting
 
                 if (flag)
                 {
-                    MessageBox.Show("Успіх!");
                     this.Close();
                 }
                 else

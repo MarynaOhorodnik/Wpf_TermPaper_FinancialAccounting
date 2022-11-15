@@ -1,11 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Wpf_TermPaper_FinancialAccounting.Classes
 {
@@ -64,6 +58,5 @@ namespace Wpf_TermPaper_FinancialAccounting.Classes
             Email = table.Rows[0][3].ToString();
             Pass = table.Rows[0][4].ToString();
         }
-
     }
 }
