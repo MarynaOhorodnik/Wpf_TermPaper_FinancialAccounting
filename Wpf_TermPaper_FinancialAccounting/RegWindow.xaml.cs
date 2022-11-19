@@ -112,6 +112,10 @@ namespace Wpf_TermPaper_FinancialAccounting
                         db.EditTable(list_command[i].ToString(), list_str1, list_var1);
                     }
 
+                    AuthWindow authWindow = new AuthWindow();
+                    authWindow.Show();
+                    this.Close();
+
                 }
                 else
                 {
