@@ -31,44 +31,44 @@ namespace Wpf_TermPaper_FinancialAccounting
                 editTextBox(tbName, "Мінімальна довжина ім'я 3 символи", true);
                 flag = false;
             }
+            else if (name.Length > 20)
+            {
+                editTextBox(tbName, "Максимальна довжина ім'я - 20 символів", true);
+                flag = false;
+            }
+            else if (!name.All(c => char.IsLetter(c)))
+            {
+                editTextBox(tbName, "Ім'я може містити лише літери", true);
+                flag = false;
+            }
             else
             {
-                if(!name.All(c => char.IsLetter(c)))
-                {
-                    editTextBox(tbName, "Ім'я може містити лише літери", true);
-                    flag = false;
-                }
-                else
-                {
-                    editTextBox(tbName);
-                }
+                editTextBox(tbName);
             }
-                
 
             if (login.Length < 5)
             {
                 editTextBox(tbLogin, "Мінімальна довжина логіну 5 символів", true);
                 flag = false;
             }
+            else if (login.Length > 20)
+            {
+                editTextBox(tbName, "Максимальна довжина логіну - 20 символів", true);
+                flag = false;
+            }
+            else if (!login.All(c => char.IsLetterOrDigit(c) || c == '_'))
+            {
+                editTextBox(tbLogin, "Логін може містити лише букви, цифри та символ _ ", true);
+                flag = false;
+            }
+            else if (checkLogin(login))
+            {
+                editTextBox(tbLogin, "Такий логін вже існує", true);
+                flag = false;
+            }
             else
             {
-                if(!login.All(c => char.IsLetterOrDigit(c) || c == '_'))
-                {
-                    editTextBox(tbLogin, "Логін може містити лише букви, цифри та символ _ ", true);
-                    flag = false;
-                }
-                else
-                {
-                    if (checkLogin(login))
-                    {
-                        editTextBox(tbLogin, "Такий логін вже існує", true);
-                        flag = false;
-                    }
-                    else
-                    {
-                        editTextBox(tbLogin);
-                    }
-                }
+                editTextBox(tbLogin);
             }
 
             if (email.Length < 5 || !email.Contains("@") || !email.Contains("."))
@@ -134,7 +134,6 @@ namespace Wpf_TermPaper_FinancialAccounting
                     AuthWindow authWindow = new AuthWindow();
                     authWindow.Show();
                     this.Close();
-
                 }
                 else
                 {

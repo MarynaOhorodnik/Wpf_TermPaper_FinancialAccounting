@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,7 +25,7 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
         {
             DB db = new DB();
 
-            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0 AND `user_id` = @user_id";
+            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0 AND `user_id` = @user_id ORDER BY `name`";
 
             ArrayList list_str = new ArrayList() { "@user_id" };
             ArrayList list_var = new ArrayList() { _CurrentUser.Id };
@@ -50,6 +51,16 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
             if(name.Length < 1)
             {
                 tbNameCtg.Background = Brushes.MistyRose;
+            }
+            else if (name.Length > 20)
+            {
+                tbNameCtg.Background = Brushes.MistyRose;
+                tbNameCtg.ToolTip = "Максимальна назва категорії - 20 символів";
+            }
+            else if (!name.All(c => char.IsLetter(c) || c == ' '))
+            {
+                tbNameCtg.Background = Brushes.MistyRose;
+                tbNameCtg.ToolTip = "Назва категорії може містити лише літери";
             }
             else if (CheckNameCtg(name))
             {

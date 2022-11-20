@@ -90,7 +90,7 @@ namespace Wpf_TermPaper_FinancialAccounting.User_Views
         {
             DB db = new DB();
 
-            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0 AND `user_id` = @user_id";
+            string str_command = "SELECT * FROM `category_income` WHERE `is_delete` = 0 AND `user_id` = @user_id ORDER BY `name`";
 
             ArrayList list_str = new ArrayList() { "@user_id" };
             ArrayList list_var = new ArrayList() { _CurrentUser.Id };
