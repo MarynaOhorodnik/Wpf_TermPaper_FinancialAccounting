@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -32,7 +33,15 @@ namespace Wpf_TermPaper_FinancialAccounting
             }
             else
             {
-                editTextBox(tbName);
+                if(!name.All(c => char.IsLetter(c)))
+                {
+                    editTextBox(tbName, "Ім'я може містити лише літери", true);
+                    flag = false;
+                }
+                else
+                {
+                    editTextBox(tbName);
+                }
             }
                 
 
@@ -43,13 +52,23 @@ namespace Wpf_TermPaper_FinancialAccounting
             }
             else
             {
-                if (checkLogin(login))
+                if(!login.All(c => char.IsLetterOrDigit(c) || c == '_'))
                 {
-                    editTextBox(tbLogin, "Такий логін вже існує", true);
+                    editTextBox(tbLogin, "Логін може містити лише букви, цифри та символ _ ", true);
                     flag = false;
                 }
                 else
-                    editTextBox(tbLogin);
+                {
+                    if (checkLogin(login))
+                    {
+                        editTextBox(tbLogin, "Такий логін вже існує", true);
+                        flag = false;
+                    }
+                    else
+                    {
+                        editTextBox(tbLogin);
+                    }
+                }
             }
 
             if (email.Length < 5 || !email.Contains("@") || !email.Contains("."))
