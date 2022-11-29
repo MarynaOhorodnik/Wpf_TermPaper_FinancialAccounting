@@ -56,5 +56,10 @@ namespace Wpf_TermPaper_FinancialAccounting
                     break;
             }
         }
+
+        private void EditInfoView_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new EditInfoViewModel();
+        }
     }
 }

@@ -106,6 +106,7 @@
     <Compile Include="User_ViewModels\AddOutcomeViewModel.cs" />
     <Compile Include="User_ViewModels\CtgIncomeViewModel.cs" />
     <Compile Include="User_ViewModels\CtgOutcomeViewModel.cs" />
+    <Compile Include="User_ViewModels\EditInfoViewModel.cs" />
     <Compile Include="User_ViewModels\MainViewModel.cs" />
     <Compile Include="User_Views\AddIncomeView.xaml.cs">
       <DependentUpon>AddIncomeView.xaml</DependentUpon>
@@ -118,6 +119,9 @@
     </Compile>
     <Compile Include="User_Views\CtgOutcomeView.xaml.cs">
       <DependentUpon>CtgOutcomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Views\EditInfoView.xaml.cs">
+      <DependentUpon>EditInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="User_Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User_Views\CtgOutcomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Views\EditInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
